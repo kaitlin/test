@@ -50,30 +50,32 @@
 $( document ).ready(function() {
 
 
-    var code = getURLParameter('code');
-    console.log("The code is" + code + "!");
-
-    function setHeader(xhr) {
-            xhr.setRequestHeader( 'Authorization', 'Bearer ' + code );
+        var code = getURLParameter('code');
+        var url = 'https://api.runkeeper.com/user/?callback=?';
+        console.log("The code is" + code + "!");
+    
+    
+        //function setHeader(xhr) {
+          //  xhr.setRequestHeader( 'Authorization', 'Bearer ' + code );
             //xhr.setRequestHeader( 'Accept', type );
-        }
+        //}
         
-    function rk_apiCall( url, access_token, type, callback ){
+    //function rk_apiCall( url, access_token, type, callback ){
         $.ajax( {
             url:        url,
             type:       'GET',
             dataType:   'json',
-            success:    function(data) { console.log(data); },
+            success:    function(data) { console.log(data); console.log('in success'); },
             error:      function(data) { console.log("Error!"); },
-            beforeSend: setHeader,
+            beforeSend: function(xhr){xhr.setRequestHeader( 'Authorization', 'Bearer ' + code );},
             xhrFields: {
                 withCredentials: true
             }
         });
-    }
+   // }
     
 
-    var profile = rk_apiCall( 'https://api.runkeeper.com/user/?callback=?', code, 'application/vnd.com.runkeeper.User+json', profileLoaded );
+    //var profile = rk_apiCall( 'https://api.runkeeper.com/user/?callback=?', code, 'application/vnd.com.runkeeper.User+json', profileLoaded );
     
     function profileLoaded(){
         alert("HEYOOOO!");
