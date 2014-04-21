@@ -56,6 +56,7 @@ $( document ).ready(function() {
         console.log("The code is" + code + "!");
     
         if( code != null && code != '') {
+            console.log('in if code is ' + code)
             $.ajax({
                 url: 'https://runkeeper.com/apps/token?client_id=29ec3d6ae355464bba76523f6b18a53f&grant_type=authorization_code&client_secret=799273efb21e499faba4077729841fe1&redirect_uri=http://kaitlin.github.io/test/&code=' + code,
                 type: 'POST',
