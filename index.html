@@ -68,7 +68,7 @@ $( document ).ready(function() {
             headers: {"Authorization": "Bearer " + code },
             success:    function(data) { console.log(data); console.log('in success'); },
             error:      function(data) { console.log("Error!"); },
-            beforeSend: function(xhr){xhr.setRequestHeader( 'Authorization', 'Bearer ' + code );},
+            beforeSend: function(xhr){xhr.setRequestHeader( 'Authorization', 'Bearer ' + code ); xhr.setRequestHeader('Accept', 'application/vnd.com.runkeeper.User+json');},
             xhrFields: {
                 withCredentials: true
             }
