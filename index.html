@@ -75,7 +75,7 @@ $( document ).ready(function() {
     }
     
 
-    var profile = rk_apiCall( 'https://api.runkeeper.com/user/?callback=?', code, 'application/vnd.com.runkeeper.User+json', profileLoaded );
+    var profile = rk_apiCall( 'https://api.runkeeper.com/user/', code, 'application/vnd.com.runkeeper.User+json', profileLoaded );
     
     function profileLoaded(){
         alert("HEYOOOO!");
