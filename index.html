@@ -57,7 +57,7 @@ $( document ).ready(function() {
     
         $.ajax({
             url: 'https://runkeeper.com/apps/token?client_id=29ec3d6ae355464bba76523f6b18a53f&grant_type=authorization_code&client_secret=799273efb21e499faba4077729841fe1&redirect_uri=http://kaitlin.github.io/test/&code=' + code,
-            type: 'GET',
+            type: 'POST',
             dataType: 'json',
             success: function(data) { console.log(data); token = data['access_token']; }
         })
