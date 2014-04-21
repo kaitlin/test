@@ -54,7 +54,7 @@ $( document ).ready(function() {
     console.log("The code is" + code + "!");
 
     function setHeader(xhr) {
-            xhr.setRequestHeader( 'Authorization', 'Bearer ' + access_token );
+            xhr.setRequestHeader( 'Authorization', 'Bearer ' + code );
             //xhr.setRequestHeader( 'Accept', type );
         }
         
