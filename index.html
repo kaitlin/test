@@ -59,7 +59,24 @@ $( document ).ready(function() {
             url: 'https://runkeeper.com/apps/token?client_id=29ec3d6ae355464bba76523f6b18a53f&grant_type=authorization_code&client_secret=799273efb21e499faba4077729841fe1&redirect_uri=http://kaitlin.github.io/test/&code=' + code,
             type: 'POST',
             dataType: 'json',
-            success: function(data) { console.log(data); token = data['access_token']; }
+            success: function(data) { 
+                
+                
+                console.log(data); 
+                token = data['access_token']; 
+                
+                $.ajax( {
+                    url:        url,
+                    type:       'GET',
+                    dataType:   'json',
+                    success:    function(data) { console.log(data); console.log('in success'); },
+                    error:      function(data) { console.log("Error!"); },
+                    beforeSend: function(xhr){xhr.setRequestHeader( 'Authorization', 'Bearer ' + token ); xhr.setRequestHeader('Accept', 'application/vnd.com.runkeeper.User+json');},
+                    xhrFields: {
+                        withCredentials: true
+                    }
+                });
+            }
         })
         //function setHeader(xhr) {
           //  xhr.setRequestHeader( 'Authorization', 'Bearer ' + code );
