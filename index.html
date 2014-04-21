@@ -52,9 +52,15 @@ $( document ).ready(function() {
 
         var code = getURLParameter('code');
         var url = 'https://api.runkeeper.com/user/';
+        var token = ''; 
         console.log("The code is" + code + "!");
     
-    
+        $.ajax({
+            url: 'https://runkeeper.com/apps/token?client_id=29ec3d6ae355464bba76523f6b18a53f&grant_type=authorization_code&client_secret=799273efb21e499faba4077729841fe1&redirect_uri=http://kaitlin.github.io/test/&code=' + code,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) { console.log(data); token = data['access_token']; }
+        })
         //function setHeader(xhr) {
           //  xhr.setRequestHeader( 'Authorization', 'Bearer ' + code );
             //xhr.setRequestHeader( 'Accept', type );
@@ -65,10 +71,9 @@ $( document ).ready(function() {
             url:        url,
             type:       'GET',
             dataType:   'json',
-            headers: {"Authorization": "Bearer " + code },
             success:    function(data) { console.log(data); console.log('in success'); },
             error:      function(data) { console.log("Error!"); },
-            beforeSend: function(xhr){xhr.setRequestHeader( 'Authorization', 'Bearer ' + code ); xhr.setRequestHeader('Accept', 'application/vnd.com.runkeeper.User+json');},
+            beforeSend: function(xhr){xhr.setRequestHeader( 'Authorization', 'Bearer ' + token ); xhr.setRequestHeader('Accept', 'application/vnd.com.runkeeper.User+json');},
             xhrFields: {
                 withCredentials: true
             }
