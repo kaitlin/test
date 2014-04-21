@@ -53,18 +53,16 @@ $( document ).ready(function() {
     var code = getURLParameter('code');
     console.log("The code is" + code + "!");
 
-    
-    function rk_apiCall( url, access_token, type, callback ){
-    
-        function setHeader(xhr) {
+    function setHeader(xhr) {
             xhr.setRequestHeader( 'Authorization', 'Bearer ' + access_token );
-            xhr.setRequestHeader( 'Accept', type );
+            //xhr.setRequestHeader( 'Accept', type );
         }
         
+    function rk_apiCall( url, access_token, type, callback ){
         $.ajax( {
             url:        url,
             type:       'GET',
-            dataType:   'jsonp',
+            dataType:   'json',
             success:    function(data) { console.log(data); },
             error:      function(data) { console.log("Error!"); },
             beforeSend: setHeader,
@@ -75,7 +73,7 @@ $( document ).ready(function() {
     }
     
 
-    var profile = rk_apiCall( 'https://api.runkeeper.com/user/', code, 'application/vnd.com.runkeeper.User+json', profileLoaded );
+    var profile = rk_apiCall( 'https://api.runkeeper.com/user/?callback=?', code, 'application/vnd.com.runkeeper.User+json', profileLoaded );
     
     function profileLoaded(){
         alert("HEYOOOO!");
